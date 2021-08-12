@@ -60,7 +60,7 @@ class AuthController extends Controller
         //Проверка данных(Auth)
         if(Auth::attempt(['login'=>$login,'password'=>$password],true)){
             //В случае авторизации
-            return redirect()->route('main_page')->withErrors('Вы успешно авторизировались','message');
+            return redirect()->route('personal_area');
         }//Если не авторизовались
         else return redirect()->route('login_page')->withErrors('Ошибка логина или пароля','login');
 
@@ -68,7 +68,11 @@ class AuthController extends Controller
     }
 
     //Logout
-    public function logout(){
+    public function logout(Request $request){
+        //Выход из авторизации
+        Auth::logout();
+        //Перенаправление на главную страницу
+        return redirect()->route('main_page')->withErrors('Вы вышли','message');
 
     }
 }
