@@ -36,9 +36,17 @@ Route::group(['middleware'=>'session'],function(){
         //Personal Area
         Route::get('/personal_area',[UserController::class,'personal_area'])->name('personal_area');
 
+        //Страница обновления пользовательских данных
+        Route::get('/personal_area/update',[UserController::class,'personal_area_update_page'])->name('personal_area_update_page');
+
+
+        Route::post('personal_area/update',[UserController::class,'personal_area_update'])->name('personal_area_update');
 
         //Logout
         Route::get('/logout',[AuthController::class,'logout' ])->name('logout');
+
+        //Удаление пользователя
+        Route::get('/personal_area/delete',[UserController::class,'personal_area_delete'])->name('personal_area_delete');
 
     });
 

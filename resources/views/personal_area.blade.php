@@ -6,11 +6,22 @@
 
 
 @section('content')
+    <div class="flex">
+        <div class="left">
+            <h2>Личный кабинет</h2><br>
+            <p><b>Имя пользователя: </b>{{ $data->user->username }}</p>
+            <p><b>Почта: </b>{{ $data->user->email }}</p>
+            <p><b>Логин: </b>{{ $data->user->login }}</p>
+            <p><b>Пароль: </b>{{ $data->user->password }}</p>
+            <p><b>Токен: </b>{{ $data->user->remember_token }}</p>
+            <p><b>Роль: </b>{{ $data->user->role }}</p>
+            <p><b>Дата создания: </b>{{ $data->user->created_at }}</p>
+            <p><b>Дата обновления: </b>{{ $data->user->updated_at }}</p>
+        </div>
+        <div class="right">
+            <a href="{{ route('personal_area_update_page') }}"><h3>Изменить данные пользователя</h3></a>
+            <a href="{{ route('personal_area_delete') }}"><h3>Удалить пользователя</h3></a>
 
-    <div class="wrap">
-        <h2>Личный кабинет</h2><br>
-        <h3>{{ $data->user->username }}</h3>
-        <h3>{{ $data->user->email }}</h3>
+        </div>
     </div>
-
 @endsection

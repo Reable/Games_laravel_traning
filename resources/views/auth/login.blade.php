@@ -6,10 +6,7 @@
 
 @section('content')
 
-    <div class="wrap">
-
-
-        <form action="{{ route('login') }}" method="POST">
+        <form class="login" action="{{ route('login') }}" method="POST">
             <fieldset>
                 <legend>Авторизация</legend>
                 {{ csrf_field() }}
@@ -22,6 +19,5 @@
                 <p class="center">Желаете <a class="underline" href="{{ route('register_page') }}">зарегистрироваться?</a></p>
             </fieldset>
         </form>
-    </div>
 
 @endsection
