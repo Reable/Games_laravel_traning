@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\GameController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,13 +34,18 @@ Route::group(['middleware'=>'session'],function(){
 
     //Auth Group
     Route::group(["middleware"=>"auth"],function(){
+
+        Route::get('/game/add',[GameController::class,'game_add_page'])->name('game_add_page');
+
+        Route::post('/game/add',[GameController::class,'game_add'])->name('game_add');
+
         //Personal Area
         Route::get('/personal_area',[UserController::class,'personal_area'])->name('personal_area');
 
         //Страница обновления пользовательских данных
         Route::get('/personal_area/update',[UserController::class,'personal_area_update_page'])->name('personal_area_update_page');
 
-
+        //Личный кабинет
         Route::post('personal_area/update',[UserController::class,'personal_area_update'])->name('personal_area_update');
 
         //Logout

@@ -19,9 +19,8 @@
             <p><b>Дата обновления: </b>{{ $data->user->updated_at }}</p>
         </div>
         <div class="right">
-            <a href="{{ route('personal_area_update_page') }}"><h3>Изменить данные пользователя</h3></a>
+            <a href="{{ route('personal_area_update_page') }}"><h3>Изменить данные</h3></a>
             <a href="{{ route('personal_area_delete') }}"><h3>Удалить пользователя</h3></a>
-
         </div>
     </div>
 @endsection

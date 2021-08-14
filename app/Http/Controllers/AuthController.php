@@ -63,8 +63,6 @@ class AuthController extends Controller
             return redirect()->route('personal_area');
         }//Если не авторизовались
         else return redirect()->route('login_page')->withErrors('Ошибка логина или пароля','login');
-
-
     }
 
     //Logout

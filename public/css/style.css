@@ -36,6 +36,7 @@ div.message{
 
 form p.error{
     color:red;
+    padding: 0;
 }
 form p.center{
     text-align: center;
@@ -52,11 +53,11 @@ form fieldset legend{
     font-size: 18pt;
     text-align: center;
 }
-form.register, form.login{
+form.center{
     width: 600px;
     margin: 0 auto;
 }
-form input{
+form input,form select, form textarea{
     height: 40px;
     border:1px solid black;
     font-family: Arial,"sans-serif";
@@ -69,6 +70,7 @@ form input{
 form input[type=button],
 form input[type=submit]{
     border:none;
+    cursor: pointer;
     background-color: gray;
     color: white;
     transition: .2s;
@@ -76,6 +78,13 @@ form input[type=submit]{
 form input[type=button]:hover,
 form input[type=submit]:hover{
     background-color:#333 ;
+}
+form input[type=file]{
+    border: none;
+}
+form textarea{
+    min-height: 100px;
+    padding: 5px;
 }
 header{
     height: 70px;

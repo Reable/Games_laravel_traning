@@ -6,7 +6,7 @@
 
 @section('content')
 
-        <form class="login" action="{{ route('login') }}" method="POST">
+        <form class="center" action="{{ route('login') }}" method="POST">
             <fieldset>
                 <legend>Авторизация</legend>
                 {{ csrf_field() }}
