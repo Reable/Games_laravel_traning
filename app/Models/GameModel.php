@@ -10,4 +10,5 @@ class GameModel extends Model
     use HasFactory;
     protected $table = 'games';
     protected $primaryKey = 'id';
+
 }

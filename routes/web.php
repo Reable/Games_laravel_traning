@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\DeveloperController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +41,10 @@ Route::group(['middleware'=>'session'],function(){
 
         Route::post('/game/add',[GameController::class,'game_add'])->name('game_add');
 
+        Route::get('/developer/add/',[DeveloperController::class,'developer_add_page'])->name('developer_add_page');
+        //
+        Route::post('/developer/add/',[DeveloperController::class,'developer_add'])->name('developer_add');
+
         //Personal Area
         Route::get('/personal_area',[UserController::class,'personal_area'])->name('personal_area');
 
@@ -48,12 +54,22 @@ Route::group(['middleware'=>'session'],function(){
         //Личный кабинет
         Route::post('personal_area/update',[UserController::class,'personal_area_update'])->name('personal_area_update');
 
-        //Logout
-        Route::get('/logout',[AuthController::class,'logout' ])->name('logout');
-
         //Удаление пользователя
         Route::get('/personal_area/delete',[UserController::class,'personal_area_delete'])->name('personal_area_delete');
 
+        //Модераторские группы
+        Route::group(['middleware'=>'moderation'],function(){
+
+            Route::get('/genre',[GenreController::class,'genre_page'])->name('genre_page');
+            Route::get('/genre/delete',[GenreController::class,'genre_delete'])->name('genre_delete');
+            Route::post('/genre/add',[GenreController::class,'genre_add'])->name('genre_add');
+
+        });
+
+
+
+        //Logout
+        Route::get('/logout',[AuthController::class,'logout' ])->name('logout');
     });
 
 });

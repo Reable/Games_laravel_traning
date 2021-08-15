@@ -16,7 +16,7 @@ class UserController extends Controller
         $data = (object)[
           'user'=>$user,
         ];
-        return view('personal_area',['data'=>$data]);
+        return view('user/personal_area',['data'=>$data]);
     }
 
     public function personal_area_update_page(){

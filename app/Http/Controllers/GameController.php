@@ -13,9 +13,8 @@ class GameController extends Controller
 {
     //Add game page
     public function game_add_page(){
-        return view('game_add');
+        return view('game/game_add');
     }
-
     public function game_add(Request $request){
         $validator = Validator::make($request->all(),[
             "cover"=>'required|max:2048|mimes:jpg,png',
@@ -23,17 +22,14 @@ class GameController extends Controller
             'year_release'=>'required|numeric|regex:/\d{4}/',
             'description'=>'required|string'
         ]);
-
         if($validator->fails()){
             return response()->json([
                'message'=>'Validation errors',
                'errors'=>$validator->errors(),
             ],422);
         }
-
         //Обработка изображения
         $image_name = '1_' . time() .'_' . $request->file('cover')->extension();
-        $request->file('cover')->move(public_path('images/'), $image_name);
         $path = 'public/images/' . $image_name;
 
         $game= new GameModel();
@@ -45,10 +41,11 @@ class GameController extends Controller
         $game->developer_id = 0;
 
         $game->save();
+        //Добавление изображения на сервер
+        $request->file('cover')->move(public_path('images/'), $image_name);
         //Отправка ответных данных
         return response()->json([
             'message'=>'Игра успешно добавлена'
         ],200);
-
     }
 }
