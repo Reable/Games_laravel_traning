@@ -16,7 +16,7 @@ class DeveloperController extends Controller
     public function developer_add(Request $request){
         $validator = Validator::make($request->all(),[
             'title'=>'required|string|max:100',
-            'year_release'=>'required|numeric|redux:/\d{4}/',
+            'year_release'=>'required|numeric|regex:/\d{4}/',
             'description'=>'required|string',
         ]);
         if($validator->fails()){
@@ -25,10 +25,9 @@ class DeveloperController extends Controller
                 'errors'=>$validator->errors()
             ],422);
         }
-
         $developer = new DeveloperModel();
         $developer->developer_title = $request->input('title');
-        $developer->developer_release = $request->input('year_release');
+        $developer->developer_foundation = $request->input('year_release');
         $developer->developer_description = $request->input('description');
         $developer->save();
 

@@ -77,7 +77,7 @@
 
 @section('content')
 
-    <form class='center' id="">
+    <form class='center' onsubmit="return false">
 
         <fieldset>
             <legend>Добавление жанра</legend>

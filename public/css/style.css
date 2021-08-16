@@ -57,6 +57,18 @@ form.center{
     width: 600px;
     margin: 0 auto;
 }
+form div.part{
+    display: flex;
+
+}
+form div.part input[type=text],
+form div.part select{
+    width: 69%;
+}
+form div.part input[type=button]{
+    width: 30%;
+    margin-left: 1%;
+}
 form input,form select, form textarea{
     height: 40px;
     border:1px solid black;
@@ -130,6 +142,22 @@ div.flex div.left{
 div.flex div.right{
     width: 30%;
     margin-left: 1%;
+}
+form#game_add div.genres{
+    display: flex;
+    flex-wrap: wrap;
+}
+form#game_add div.genres div.genre{
+    cursor:pointer;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background-color: #666;
+    color: white;
+    transition: .2s;
+}
+form#game_add div.genres div.genre:hover{
+    background-color: #333;
 }
 footer{
     padding: 15px 0;
