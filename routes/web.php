@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\ModerationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -60,9 +61,14 @@ Route::group(['middleware'=>'session'],function(){
         //Модераторские группы
         Route::group(['middleware'=>'moderation'],function(){
 
+            Route::get('moderation',[ModerationController::class,'moderation_page'])->name('moderation_page');
+
+
             Route::get('/genre',[GenreController::class,'genre_page'])->name('genre_page');
             Route::get('/genre/delete',[GenreController::class,'genre_delete'])->name('genre_delete');
             Route::post('/genre/add',[GenreController::class,'genre_add'])->name('genre_add');
+
+
 
         });
 

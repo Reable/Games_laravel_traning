@@ -58,6 +58,7 @@ class UserController extends Controller
         $user_id = Auth::id();
         $user = UserModel::find($user_id);
         $user->delete();
+        Auth::logout();
         return redirect()->route('main_page')->withErrors('Пользователь удален','message');
 
 

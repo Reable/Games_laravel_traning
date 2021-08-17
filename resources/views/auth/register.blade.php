@@ -26,6 +26,7 @@
                 <input type="password" name="password_check" placeholder="Подтверждение пароля">
 
                 <input type="submit" value="Зарегестрироваться">
+
                 <p class="center">Уже зарегестрированны? Тогда <a class="underline" href="{{ route('login_page') }}">войдите</a></p>
             </fieldset>
         </form>

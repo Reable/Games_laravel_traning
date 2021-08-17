@@ -46,7 +46,7 @@ class AuthController extends Controller
         //Сохранение записей
         $user->save();
 
-        return redirect()->route('register_page')->withErrors('Вы успешно авторизовались','message');
+        return redirect()->route('register_page')->withErrors('Вы успешно зарегестрировались','message');
 
     }
 

@@ -4,6 +4,14 @@
     Личный кабинет
 @endsection
 
+@section('script')
+    <script>
+        function delete_user(){
+            let check = confirm('Вы действительно хотите удалить страницу')
+            if(check) location.href = ('{{ route('personal_area_delete') }}')
+        }
+    </script>
+@endsection
 
 @section('content')
     <div class="flex">
@@ -19,11 +27,14 @@
             <p><b>Дата обновления: </b>{{ $data->user->updated_at }}</p>
         </div>
         <div class="right">
-            <a href="{{ route('personal_area_update_page') }}"><h3>Изменить данные</h3></a>
+            <a href="{{ route('personal_area_update_page') }}"><h3>Изменить данные</h3></a><br>
             @if($role == 'admin' || $role=='moderator')
-                <a href="{{ route('genre_page') }}">Страница жанров</a>
+                <a href="{{ route('genre_page') }}"><h3>Страница жанров</h3></a><br>
+                <a href="{{ route('moderation_page') }}"><h3>Страница модерации</h3></a><br>
             @endif
-            <a href="{{ route('personal_area_delete') }}"><h3>Удалить пользователя</h3></a>
+            <a href="{{ route('game_add_page') }}"><h3>Добавить игру</h3></a><br>
+            <a href="{{ route('developer_add_page') }}"><h3>Добавить разработчика</h3></a><br>
+            <a onclick="delete_user()"><h3>Удалить пользователя</h3></a><br>
         </div>
     </div>
 @endsection

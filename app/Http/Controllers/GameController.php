@@ -6,6 +6,7 @@ use App\Models\DeveloperModel;
 use App\Models\GenreModel;
 use Illuminate\Http\Request;
 //Modules
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 //Models
@@ -17,7 +18,7 @@ class GameController extends Controller
     //Add game page
     public function game_add_page(){
         $genres = GenreModel::all();
-        $developer = DeveloperModel::all();
+        $developer = DeveloperModel::where("state","1")->get();
         $data = (object)[
             'genres'=>$genres,
             'developers'=>$developer
@@ -29,7 +30,7 @@ class GameController extends Controller
         $validator = Validator::make($request->all(),[
             "cover"=>'required|max:2048|mimes:jpg,png',
             'title'=>'required|string',
-            'year_release'=>'required|numeric|regex:/\d{4}/',
+            'year_release'=>'required|numeric|regex:/^20\d{2}$/',
             'description'=>'required|string',
             'genres'=>'required',
             'developer_id'=>'required|numeric'
@@ -44,6 +45,8 @@ class GameController extends Controller
         $image_name = '1_' . time() .'_' . $request->file('cover')->extension();
         $path = 'public/images/' . $image_name;
         $game= new GameModel();
+
+        $game->user_id = Auth::id();
         $game->game_cover = $path;
         $game->game_title = $request->input('title');
         $game->game_release = $request->input('year_release');
