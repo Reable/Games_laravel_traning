@@ -11,6 +11,9 @@ use App\Models\DeveloperModel;
 class DeveloperController extends Controller
 {
     //
+    public function developer_page(Request $request){
+
+    }
     public function developer_add_page(){
         return view('developer.developer_add');
     }

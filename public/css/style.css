@@ -143,10 +143,27 @@ div.flex div.right{
     width: 30%;
     margin-left: 1%;
 }
+
+div.flex div.point,div.wrap div.point{
+    margin: 10px 0;
+
+}
+div.flex div.point h3,div.wrap div.point h3{
+    margin-bottom: 5px;
+}
 form#game_add div.genres{
     display: flex;
     flex-wrap: wrap;
 }
+div.flex div.structure{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+
+
 form#game_add div.genres div.genre{
     cursor:pointer;
     padding: 5px 10px;
@@ -159,6 +176,38 @@ form#game_add div.genres div.genre{
 form#game_add div.genres div.genre:hover{
     background-color: #333;
 }
+div.games,
+div.developers{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+div.developers div.developer{
+    padding: 10px;
+    border:1px solid rgba(0,0,0,0.5);
+    border-radius:3px;
+    width: 24%;
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
+    margin: 10px 0;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 footer{
     padding: 15px 0;
     height: 70px;

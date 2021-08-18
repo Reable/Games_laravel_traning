@@ -24,6 +24,10 @@ Route::group(['middleware'=>'session'],function(){
     //Main page
     Route::get('/',[MainController::class,'main_page'])->name('main_page');
 
+    //Developer page
+    Route::get('/developers/{id}',[DeveloperController::class,'developer_page'])->name('developer_page');
+
+
     //Register page
     Route::get('/register',[AuthController::class,'register_page' ])->name('register_page');
 
@@ -63,17 +67,21 @@ Route::group(['middleware'=>'session'],function(){
 
             Route::get('moderation',[ModerationController::class,'moderation_page'])->name('moderation_page');
 
+            //Одобрить разроботчика
+            Route::get('/moderation/approve/developer',[ModerationController::class,'approve_developer'])->name('moderation_approve_developer');
+            //Подтверждение игры
+            Route::get('/moderation/approve/game',[ModerationController::class,'approve_game'])->name('moderation_approve_game');
+            //Delete user
+            Route::get('/moderation/delete/user',[ModerationController::class,'delete_user'])->name('moderation_delete_user');
+
+
 
             Route::get('/genre',[GenreController::class,'genre_page'])->name('genre_page');
             Route::get('/genre/delete',[GenreController::class,'genre_delete'])->name('genre_delete');
             Route::post('/genre/add',[GenreController::class,'genre_add'])->name('genre_add');
 
 
-
         });
-
-
-
         //Logout
         Route::get('/logout',[AuthController::class,'logout' ])->name('logout');
     });
