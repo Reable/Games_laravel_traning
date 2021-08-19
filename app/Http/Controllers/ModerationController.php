@@ -14,8 +14,8 @@ class ModerationController extends Controller
     public function moderation_page(){
         //Получение данных
         $users = UserModel::all();
-        $developers = DeveloperModel::where('state','0')->get();
-        $games = GameModel::where('state','0')->get();
+        $developers = DeveloperModel::all();
+        $games = GameModel::all();
 
         $data = (object)[
           'users'     =>    $users,
@@ -25,7 +25,6 @@ class ModerationController extends Controller
 
         return view('moderation.moderation',['data'=>$data]);
     }
-
     //Одобрение разроботчика
     public function approve_developer(Request $request){
         $developer_id = $request->input('developer_id');
@@ -34,7 +33,6 @@ class ModerationController extends Controller
         $developer->save();
         return redirect()->route('moderation_page')->withErrors('Разработчик '. $developer->developer_title .' одобрен','message');
     }
-
     //Одобрение игры
     public function approve_game(Request $request){
         $game_id = $request->input('game_id');
@@ -44,7 +42,22 @@ class ModerationController extends Controller
         return redirect()->route('moderation_page')->withErrors('Игра '. $game->game_title .' одобрена','message');
 
     }
-
+    //Вновь отправить на модерацию
+    public function condemn_developer(Request $request){
+        $id = $request->input('developer_id');
+        $developer = DeveloperModel::find($id);
+        $developer->state = 0;
+        $developer->save();
+        return redirect()->route('moderation_page')->withErrors('Разроботчик '.$developer->developer_title.' отправлен на модерацию','message');
+    }
+    //Вновь отправить на модерацию
+    public function condemn_game(Request $request){
+        $id = $request->input('game_id');
+        $game = GameModel::find($id);
+        $game->state = 0;
+        $game->save();
+        return redirect()->route('moderation_page')->withErrors('Игра '.$game->game_title.' отправлен на модерацию','message');
+    }
     //Удаление пользователя по выбору
     public function delete_user(Request $request){
         //

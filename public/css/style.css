@@ -15,6 +15,9 @@ a{
     transition: .2s;
     cursor: pointer;
 }
+img{
+    max-width: 100%;
+}
 a:hover{
     color:black;
 }
@@ -129,6 +132,9 @@ main p{
 div.flex{
     display: flex;
 }
+div.wrap{
+    margin:10px 0;
+}
 div.wrap,div.flex div.left,div.flex div.right{
     padding: 20px;
     border-radius: 5px;
@@ -176,20 +182,35 @@ form#game_add div.genres div.genre{
 form#game_add div.genres div.genre:hover{
     background-color: #333;
 }
-div.games,
-div.developers{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
+div.games div.game,
 div.developers div.developer{
     padding: 10px;
-    border:1px solid rgba(0,0,0,0.5);
-    border-radius:3px;
     width: 24%;
     box-shadow: 0 0 3px rgba(0,0,0,0.5);
     margin: 10px 0;
     text-align: center;
+}
+div.games,
+div.developers{
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+div.games div.game div.image{
+    height: 280px;
+}
+div.games div.game div.title{
+   text-align: center;
+    padding: 10px;
+}
+div.games div.game div.title h3{
+    margin: 0;
+}
+div.games div.game div.image img{
+    height: 100%;
+    border-radius: 3px;
+    object-fit: cover;
 }
 
 

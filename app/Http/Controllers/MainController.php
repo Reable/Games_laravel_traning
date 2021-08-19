@@ -11,8 +11,9 @@ class MainController extends Controller
     //
     public function main_page(){
         //Передача разроботчиков только одобренных
-        $developers = DeveloperModel::where('state','1')->get();
-        $games = GameModel::where('state','1')->get();
+        //orderBy
+        $developers = DeveloperModel::where('state','1')->orderBy('updated_at','DESC')->get();
+        $games = GameModel::where('state','1')->orderBy('updated_at','DESC')->get();
 
         //Составление обьекта
         $data = (object)[

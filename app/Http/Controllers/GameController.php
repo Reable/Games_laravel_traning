@@ -26,6 +26,9 @@ class GameController extends Controller
 
         return view('game/game_add',['data'=>$data]);
     }
+    public function game_page(){
+
+    }
     public function game_add(Request $request){
         $validator = Validator::make($request->all(),[
             "cover"=>'required|max:2048|mimes:jpg,png',

@@ -12,7 +12,23 @@
         <div class="point">
             <h3>Последнии добавленые игры</h3><hr>
             <div class="games">
-                <p>Данные отстствует</p>
+                @if(count($data->games) == 0)
+                    <p>Данные отсутствуют</p>
+                @else
+                    @foreach($data->games as $val)
+                        <div class="game">
+                            <a href="{{route('game_page',['id'=>$val->id])}}">
+                                <div class="image">
+                                    <img src="{{asset($val->game_cover)}}">
+                                </div>
+                                <div class="title">
+                                    <h3>{{$val->game_title}}</h3>
+                                </div>
+                            </a>
+
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div><br>
         <div class="point">

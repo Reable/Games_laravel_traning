@@ -8,11 +8,36 @@ use Illuminate\Http\Request;
 
 //Models
 use App\Models\DeveloperModel;
+use App\Models\GameModel;
 class DeveloperController extends Controller
 {
     //
     public function developer_page(Request $request){
+        $developer_id = $request->route('id');
+        $developer = DeveloperModel::find($developer_id);
 
+        //Обработка ошибок
+        if($developer == NULL) return redirect()->route('main_page')->withErrors('Такого разроботчика не существует','message');
+        if($developer->state == 0){
+            if(Auth::check()){
+                $user = Auth::user();
+                switch ($user->role){
+                    case 'admin': break;
+                    case 'moderator': break;
+                    default: return redirect()->route('main_page')->withErrors('Такого разроботчика не существует','message');
+
+                }
+            }else{
+                return redirect()->route('main_page')->withErrors('Вы не авторизованы','message');
+            }
+        }
+
+        $games=GameModel::where('developer_id',$developer_id)->orderBy('updated_at','DESC')->get();
+        $data = (object)[
+          'developer'=>$developer,
+          'games'=>$games
+        ];
+        return view('developer.developer',['data'=>$data]);
     }
     public function developer_add_page(){
         return view('developer.developer_add');

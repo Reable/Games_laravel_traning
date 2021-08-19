@@ -26,6 +26,7 @@ Route::group(['middleware'=>'session'],function(){
 
     //Developer page
     Route::get('/developers/{id}',[DeveloperController::class,'developer_page'])->name('developer_page');
+    Route::get('/game/{id}',[GameController::class,'game_page'])->name('game_page');
 
 
     //Register page
@@ -69,13 +70,16 @@ Route::group(['middleware'=>'session'],function(){
 
             //Одобрить разроботчика
             Route::get('/moderation/approve/developer',[ModerationController::class,'approve_developer'])->name('moderation_approve_developer');
+            //Вновь отправить на модерацию
+            Route::get('/moderation/condemn/developer',[ModerationController::class,'condemn_developer'])->name('moderation_condemn_developer');
             //Подтверждение игры
             Route::get('/moderation/approve/game',[ModerationController::class,'approve_game'])->name('moderation_approve_game');
+            //Вновь отправить на модерацию
+            Route::get('/moderation/condemn/game',[ModerationController::class,'condemn_game'])->name('moderation_condemn_game');
             //Delete user
             Route::get('/moderation/delete/user',[ModerationController::class,'delete_user'])->name('moderation_delete_user');
 
-
-
+            //Группа жанров
             Route::get('/genre',[GenreController::class,'genre_page'])->name('genre_page');
             Route::get('/genre/delete',[GenreController::class,'genre_delete'])->name('genre_delete');
             Route::post('/genre/add',[GenreController::class,'genre_add'])->name('genre_add');
