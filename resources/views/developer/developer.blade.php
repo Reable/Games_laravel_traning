@@ -28,7 +28,6 @@
                                 <h3>{{$val->game_title}}</h3>
                             </div>
                         </a>
-
                     </div>
                 @endforeach
             @endif

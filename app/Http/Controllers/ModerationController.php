@@ -58,6 +58,47 @@ class ModerationController extends Controller
         $game->save();
         return redirect()->route('moderation_page')->withErrors('Игра '.$game->game_title.' отправлен на модерацию','message');
     }
+    //
+    public function search_users(Request $request){
+        //Get query
+        $query = $request->input('query');
+        $users = UserModel::where('id',$query)
+            ->orWhere('login','LIKE','%'.$query.'%')
+            ->orWhere('username','LIKE','%'.$query.'%')
+            ->orWhere('email')
+            ->get();
+        if($query == '') $users = UserModel::all();
+        return response()->json([
+           'data'=>$users
+        ],200);
+    }
+    public function search_developers(Request $request){
+        //Get query
+        $query = $request->input('query');
+        $developers = DeveloperModel::where('id',$query)
+            ->orWhere('developer_title','LIKE','%'.$query.'%')
+            ->orWhere('developer_foundation','LIKE','%'.$query.'%')
+            ->get();
+        if($query == '') $developers = DeveloperModel::all();
+        return response()->json([
+            'data'=>$developers
+        ],200);
+    }
+    public function search_games(Request $request){
+        //Get query
+        $query = $request->input('query');
+        $games = GameModel::where('id',$query)
+            ->orWhere('game_title','LIKE','%'.$query.'%')
+            ->orWhere('game_release','LIKE','%'.$query.'%')
+            ->get();
+        if($query == '') $games = GameModel::all();
+        return response()->json([
+            'data'=>$games
+        ],200);
+    }
+
+
+
     //Удаление пользователя по выбору
     public function delete_user(Request $request){
         //

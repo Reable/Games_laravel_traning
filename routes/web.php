@@ -29,6 +29,9 @@ Route::group(['middleware'=>'session'],function(){
     Route::get('/game/{id}',[GameController::class,'game_page'])->name('game_page');
 
 
+    Route::get('/users/{id}',[UserController::class,'user_page'])->name('user_page');
+
+
     //Register page
     Route::get('/register',[AuthController::class,'register_page' ])->name('register_page');
 
@@ -76,6 +79,12 @@ Route::group(['middleware'=>'session'],function(){
             Route::get('/moderation/approve/game',[ModerationController::class,'approve_game'])->name('moderation_approve_game');
             //Вновь отправить на модерацию
             Route::get('/moderation/condemn/game',[ModerationController::class,'condemn_game'])->name('moderation_condemn_game');
+            //Search
+            Route::get('/moderation/search/users',[ModerationController::class,'search_users'])->name('moderation_search_users');
+            Route::get('/moderation/search/developers',[ModerationController::class,'search_developers'])->name('moderation_search_developers');
+            Route::get('/moderation/search/games',[ModerationController::class,'search_games'])->name('moderation_search_games');
+
+
             //Delete user
             Route::get('/moderation/delete/user',[ModerationController::class,'delete_user'])->name('moderation_delete_user');
 

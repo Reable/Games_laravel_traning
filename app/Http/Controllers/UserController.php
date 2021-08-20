@@ -10,6 +10,19 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+
+    public function user_page(Request $request){
+        //Get data
+        $user_id = $request->route('id');
+        $user = UserModel::find($user_id);
+        if($user == NULL ) return redirect()->route('main_page')->withErrors('Такого пользователя не существует','message');
+        $data = (object)[
+            'user'=>$user
+        ];
+        return view('user.user',['data'=>$data]);
+    }
+
+
     //Personal Area
     public function personal_area(){
         $user = Auth::user();
@@ -18,7 +31,6 @@ class UserController extends Controller
         ];
         return view('user/personal_area',['data'=>$data]);
     }
-
     public function personal_area_update_page(){
         $user = Auth::user();
         $data = (object)[
@@ -55,7 +67,7 @@ class UserController extends Controller
         $user->email = $request->input('email');
         if($request->input('password') != '')
              $user->password = bcrypt($request->input('password'));
-        $user->role = "user";
+        $user->role = Auth::user()->role;
         //Сохранение измененных данных
         $user->save();
 
